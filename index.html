@@ -90,7 +90,7 @@
 
         audio {
             width: 100%;
-            margin-top: 8px;
+            margin-top: 12px;
             outline: none;
         }
 
@@ -287,8 +287,9 @@
     <!-- Audio Player Section -->
     <div class="music-card">
         <div class="music-tag">♫ Taara Na Disse (This song reminded me of you, Play it)</div>
-        <audio controls preload="auto">
-            <source src="Tenu%20Sang%20Rakhna.mp3" type="audio/mpeg">
+        <button id="playBtn" class="btn-primary" onclick="toggleAudio()" style="margin-top: 5px;">▶ Play Song</button>
+        <audio id="mySong" controls preload="auto">
+            <source src="song.mp3" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
     </div>
@@ -302,7 +303,7 @@
         Hey bro,<br><br>
         Wishing you a happy rakshabandhan 🫂❤️. Missing you the most today. Thank you for being my best guide in life and always supporting me.<br><br>
         I wish may god fulfill all your wishes 💕 I will always be there for you.<br><br>
-        Love you lots❤️
+        Love you lots❤️ - from અંગ્રેજી medium
     </div>
 
     <!-- Photo Gallery Carousel -->
@@ -387,6 +388,23 @@
 </div>
 
 <script>
+    // Audio Player Toggle Logic
+    const audio = document.getElementById('mySong');
+    const playBtn = document.getElementById('playBtn');
+
+    function toggleAudio() {
+        if (audio.paused) {
+            audio.play().then(() => {
+                playBtn.innerText = "⏸ Pause Song";
+            }).catch(error => {
+                console.log("Playback error:", error);
+            });
+        } else {
+            audio.pause();
+            playBtn.innerText = "▶ Play Song";
+        }
+    }
+
     // Quiz State
     const questions = [
         { q: "Who steals the TV remote first?", feedback: "Ahh, so you're blaming me now? 😂" },
